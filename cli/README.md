@@ -1,5 +1,6 @@
 # Azure CLI
-## 01 Installing the Azure CLI
+
+## 01 Installing the Azure CLI in MacOS
 https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-macos
 
 ```bash
@@ -40,7 +41,7 @@ https://marketplace.visualstudio.com/items?itemName=ms-vscode.azurecli
 # Create a resource group
 az group create --name TutorialResources --location eastus
 
-az group list
+az group list -o table
 
 # Create a virtual machine
 az vm create --resource-group TutorialResources \
@@ -50,7 +51,7 @@ az vm create --resource-group TutorialResources \
   --output json \
   --verbose
 
-az vm list
+az vm list -o table
 
 # Connect through SSH, uses the SSH key generated earlier
 ssh <PUBLIC_IP_ADDRESS>
@@ -82,10 +83,26 @@ az network nic show --ids $NIC_ID \
 ```bash
 az group delete --name TutorialResources --no-wait
 ```
+## Usefull commands
+```bash
+# List available locations
+az account list-locations -o table
 
-### Using PowerShell
-https://docs.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-powershell
-https://docs.microsoft.com/en-us/powershell/module/az.compute/new-azvm?view=azps-7.5.0
+```
+
+# PowerShell
+
+- First, [Update PowerShell to the latest version](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.2#msi)
+- Next, [Install the Az PowerShell module](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-8.2.0)
+- Finally, Sign in to Azure
+```powershell
+Connect-AzAccount
+#Account                               SubscriptionName TenantId                             Environment
+#-------                               ---------------- --------                             -----------
+#user@mail.edu.sv AZ200KFREE           cc0dbb84-4b61-4c3b-942c-fdsafdasafsdf                 AzureCloud
+```
+
+...And create a [Linux VM](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-powershell), [Syntax](https://docs.microsoft.com/en-us/powershell/module/az.compute/new-azvm?view=azps-7.5.0)
 
 ```powershell
 # show PowerShell version
@@ -117,4 +134,13 @@ Stop-AzVM -ResourceGroupName TutorialResources -Name TutorialVM1
 ## Clean up
 ```powershell
 Remove-AzResourceGroup -Name TutorialResources -Force
+```
+
+## Usefull commands
+```powershell
+# List available locations
+Get-AzLocation | Format-Table
+
+# Get the available VM sizes for an Azure region
+Get-AzVMSize -Location "eastus" | Format-Table -autosize
 ```
