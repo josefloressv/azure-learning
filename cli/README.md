@@ -14,6 +14,15 @@ https://docs.microsoft.com/en-us/cli/azure/get-started-with-azure-cli#how-to-sig
 az login
 ```
 
+Note: With ACG in incognito windows there is another way to login
+
+first
+```bash
+az login --use-device-code
+```
+then, go to https://microsoft.com/devicelogin and enter the code generated above
+
+and you will see in the console:
 ```json
 [
   {
