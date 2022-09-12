@@ -16,6 +16,13 @@ https://docs.microsoft.com/en-us/cli/azure/vm/image?view=azure-cli-latest
 ```bash
 az login
 terraform init -reconfigure
+#
+# to avoid the error from ACG Azure Sandbox restriction:
+# Cannnot register providers: Microsoft.DesktopVirtualization, Microsoft.AVS, Microsoft.StoragePool, Microsoft.DataProtection
+# Microsoft.AppPlatform, Microsoft.Maintenance. Errors were: Cannot register provider Microsoft.DesktopVirtualization with
+# Azure Resource Manager: resources.ProvidersClient#Register: Failure responding to request: StatusCode=403 
+# 
+export ARM_SKIP_PROVIDER_REGISTRATION=true
 terraform plan -out plan.tfplan
 terraform apply plan.tfplan
 ```

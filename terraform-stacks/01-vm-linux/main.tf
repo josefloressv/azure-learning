@@ -1,7 +1,7 @@
 resource "azurerm_linux_virtual_machine" "vm01" {
   name                = "TutorialVM1"
-  resource_group_name = azurerm_resource_group.rg01.name
-  location            = azurerm_resource_group.rg01.location
+  resource_group_name = data.azurerm_resource_group.rg01.name
+  location            = data.azurerm_resource_group.rg01.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
   network_interface_ids = [

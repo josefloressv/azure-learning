@@ -2,8 +2,8 @@
 # NIC
 resource "azurerm_network_interface" "nic01" {
   name                = "NIC01"
-  location            = azurerm_resource_group.rg01.location
-  resource_group_name = azurerm_resource_group.rg01.name
+  location            = data.azurerm_resource_group.rg01.location
+  resource_group_name = data.azurerm_resource_group.rg01.name
 
   ip_configuration {
     name                          = "IPConfig01"
@@ -16,8 +16,8 @@ resource "azurerm_network_interface" "nic01" {
 # Public IP
 resource "azurerm_public_ip" "ip01" {
   name                = "PublicIP01"
-  resource_group_name = azurerm_resource_group.rg01.name
-  location            = azurerm_resource_group.rg01.location
+  resource_group_name = data.azurerm_resource_group.rg01.name
+  location            = data.azurerm_resource_group.rg01.location
   allocation_method   = "Dynamic"
 
   tags = {
